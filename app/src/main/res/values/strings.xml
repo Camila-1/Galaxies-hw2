@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Galaxies</string>
+    <string name="messier_61_title">Мессье 61</string>
+    <string name="messier_61_description">Спиральная галактика в самом центре созвездия Девы</string>
+    <string name="milky_way_title">Млечный Путь</string>
+    <string name="milky_way_description">Спиральная галактика с перемычкой. Наша галактика</string>
+    <string name="m51_title">M 51 (Arp 85 и VV 1)</string>
+    <string name="m51_description">Большая спиральная галактика с галактикой-компаньоном NGC 5195</string>
+    <string name="hoags_object_title">Объект Хога</string>
+    <string name="hoags_object_description">Кольцеобразная галактика в созвездии Змеи</string>
+    <string name="ngc_1300_title">NGC 1300</string>
+    <string name="ngc_1300_description">Спиральная галактика с перемычкой в созвездии Эридан</string>
+    <string name="ngc_1672_title">NGC 1672</string>
+    <string name="ngc_1672_description">Спиральная галактика с перемычкой в созвездии Золотая Рыба</string>
+    <string name="ngc_247_title">NGC 247</string>
+    <string name="ngc_247_description">Спиральная галактика в созвездии Кита</string>
+    <string name="ngc_5584_title">NGC 5584</string>
+    <string name="ngc_5584_description">Спиральная галактика с перемычкой в созвездии Девы</string>
+    <string name="ngc_6240_title">NGC 6240</string>
+    <string name="ngc_6240_description">Сливающиеся галактики в созвездии Змееносца</string>
+    <string name="ngc_6872_title">NGC 6872</string>
+    <string name="ngc_6872_description">Спиральная галактика в созвездии Павлин</string>
+</resources>
