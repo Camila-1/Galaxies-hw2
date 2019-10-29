@@ -20,4 +20,7 @@
     <string name="ngc_6240_description">Сливающиеся галактики в созвездии Змееносца</string>
     <string name="ngc_6872_title">NGC 6872</string>
     <string name="ngc_6872_description">Спиральная галактика в созвездии Павлин</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
