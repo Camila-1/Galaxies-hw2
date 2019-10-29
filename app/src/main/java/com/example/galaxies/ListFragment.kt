@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 
-data class Item(val image: Int, val title: String, val description: String)
+data class Item(val image: Int, val title: String, val description: String, val details: String = "details")
 
 class ListFragment : Fragment() {
 
