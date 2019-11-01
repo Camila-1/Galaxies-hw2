@@ -2,6 +2,7 @@ package com.example.galaxies
 
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,12 +30,17 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        item_details.text = details
+
+        item_details.movementMethod = ScrollingMovementMethod()
+        if(details != null) item_details.text = details
+        else item_details.text = getString(R.string.nothing_selected)
+
     }
 
     companion object {
         fun newInstance(details: String?) : Fragment = DetailsFragment().apply {
-            arguments = bundleOf("itemDetails" to details)
+            if (!details.isNullOrEmpty())
+                arguments = bundleOf("itemDetails" to details)
         }
     }
 

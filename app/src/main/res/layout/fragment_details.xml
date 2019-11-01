@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Details fragment"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        style="@style/description_style"
+        android:scrollbars="vertical"/>
 
 </FrameLayout>
