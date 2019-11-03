@@ -10,17 +10,14 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import kotlinx.android.synthetic.main.fragment_details.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class DetailsFragment : Fragment() {
 
-    private var details: String? = null
+    private var selectedItem: Item? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        details = arguments?.getString("itemDetails")
+        selectedItem = arguments?.getParcelable("selectedItem")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -31,17 +28,15 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        item_details.movementMethod = ScrollingMovementMethod()
-        if(details != null) item_details.text = details
-        else item_details.text = getString(R.string.nothing_selected)
-
+        selectedItem?.image?.let { item_image.setImageResource(it) }
+        selectedItem?.title?.let { item_title.text = it }
+        selectedItem?.description?.let { item_description.text = it }
+        item_details.text = selectedItem?.details ?: getString(R.string.nothing_selected)
     }
 
     companion object {
-        fun newInstance(details: String?) : Fragment = DetailsFragment().apply {
-            if (!details.isNullOrEmpty())
-                arguments = bundleOf("itemDetails" to details)
+        fun newInstance(item: Item?) : Fragment = DetailsFragment().apply {
+             arguments = bundleOf("selectedItem" to item)
         }
     }
-
 }
