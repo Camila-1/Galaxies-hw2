@@ -32,39 +32,36 @@ class MainActivity : AppCompatActivity() {
 
     fun itemClicked(item: Item) {
         checkedItem = item
-        detailsFragment.setItem(item)
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
         val orientation: Int = resources.configuration.orientation
 
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            transaction.replace(R.id.details_fragment, detailsFragment)
+            transaction.replace(R.id.details_fragment, DetailsFragment.newInstance(item))
                 .commit()
         } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            transaction.replace(R.id.fragment, detailsFragment)
-                .addToBackStack(null)
+            transaction.replace(R.id.fragment, DetailsFragment.newInstance(item))
                 .commit()
         }
     }
 
     private fun render(item: Item?) {
-        detailsFragment.setItem(item)
         val orientation: Int = resources.configuration.orientation
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
 
         if (item != null) {
             if (orientation == Configuration.ORIENTATION_PORTRAIT)
-                transaction.replace(R.id.fragment, detailsFragment).commit()
+                transaction.replace(R.id.fragment, DetailsFragment.newInstance(item)).commit()
             if (orientation == Configuration.ORIENTATION_LANDSCAPE)
                 transaction.replace(R.id.list_fragment, listFragment)
-                    .replace(R.id.details_fragment, detailsFragment).commit()
+                    .replace(R.id.details_fragment, DetailsFragment.newInstance(item)).commit()
         } else {
             if (orientation == Configuration.ORIENTATION_PORTRAIT)
                 transaction.replace(R.id.fragment, listFragment).commit()
             if (orientation == Configuration.ORIENTATION_LANDSCAPE)
                 transaction.replace(R.id.list_fragment, listFragment)
-                    .replace(R.id.details_fragment, detailsFragment).commit()
+                    .replace(R.id.details_fragment, DetailsFragment.newInstance(item)).commit()
         }
     }
 
@@ -74,7 +71,6 @@ class MainActivity : AppCompatActivity() {
         val orientation: Int = resources.configuration.orientation
         if(
             recycler_view == null &&
-            supportFragmentManager.backStackEntryCount == 0 &&
             orientation == Configuration.ORIENTATION_PORTRAIT
         ) {
                 supportFragmentManager

@@ -33,8 +33,10 @@ class DetailsFragment : Fragment() {
         item_details.text = selectedItem?.details ?: getString(R.string.nothing_selected)
     }
 
-    fun setItem(item: Item?) {
-        arguments = bundleOf("selectedItem" to item)
+    companion object {
+        fun newInstance(item: Item?) : Fragment = DetailsFragment().apply {
+            arguments = bundleOf("selectedItem" to item)
+        }
     }
 
 }
