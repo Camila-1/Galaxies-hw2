@@ -1,28 +1,21 @@
 package com.example.galaxies
 
 import android.content.res.Configuration
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.text.method.ScrollingMovementMethod
-import android.widget.Toast
-import androidx.core.graphics.drawable.toDrawable
-import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_details.*
+import kotlinx.android.synthetic.main.fragment_list.*
 
 
 class MainActivity : AppCompatActivity() {
     private var checkedItem: Item? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         checkedItem = savedInstanceState?.getParcelable("item")
-        rendering(checkedItem)
+        render(checkedItem)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -41,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val transaction = fragmentManager.beginTransaction()
         val orientation: Int = resources.configuration.orientation
 
-        if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             transaction.replace(R.id.details_fragment, DetailsFragment.newInstance(item))
                 .commit()
         } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -51,12 +44,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun rendering(item: Item?) {
+    private fun render(item: Item?) {
         val orientation: Int = resources.configuration.orientation
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
 
-        if(item != null){
+        if (item != null) {
             if (orientation == Configuration.ORIENTATION_PORTRAIT) {
                 transaction.replace(R.id.fragment, DetailsFragment.newInstance(item)).commit()
             }
@@ -66,11 +59,20 @@ class MainActivity : AppCompatActivity() {
         } else {
             if (orientation == Configuration.ORIENTATION_PORTRAIT)
                 transaction.replace(R.id.fragment, ListFragment()).commit()
-            if(orientation == Configuration.ORIENTATION_LANDSCAPE)
+            if (orientation == Configuration.ORIENTATION_LANDSCAPE)
                 transaction.replace(R.id.list_fragment, ListFragment())
-                    .replace(R.id.details_fragment, DetailsFragment.newInstance(item)).commitNow()
+                    .replace(R.id.details_fragment, DetailsFragment.newInstance(item)).commit()
         }
     }
 
+    override fun onBackPressed() {
+        if (checkedItem == null) return super.onBackPressed()
+
+        checkedItem = null
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment, ListFragment())
+            .commit()
+    }
 }
 
