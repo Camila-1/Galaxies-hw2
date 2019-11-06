@@ -57,9 +57,9 @@ class MainActivity : AppCompatActivity() {
         val transaction = fragmentManager.beginTransaction()
 
         if(item != null){
-            if (orientation == Configuration.ORIENTATION_PORTRAIT)
-                transaction.replace(R.id.fragment, DetailsFragment.newInstance(item))
-                    .addToBackStack(null).commit()
+            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                transaction.replace(R.id.fragment, DetailsFragment.newInstance(item)).commit()
+            }
             if (orientation == Configuration.ORIENTATION_LANDSCAPE)
                 transaction.replace(R.id.list_fragment, ListFragment())
                     .replace(R.id.details_fragment, DetailsFragment.newInstance(item)).commit()
@@ -68,19 +68,9 @@ class MainActivity : AppCompatActivity() {
                 transaction.replace(R.id.fragment, ListFragment()).commit()
             if(orientation == Configuration.ORIENTATION_LANDSCAPE)
                 transaction.replace(R.id.list_fragment, ListFragment())
-                    .replace(R.id.details_fragment, DetailsFragment.newInstance(item)).commit()
+                    .replace(R.id.details_fragment, DetailsFragment.newInstance(item)).commitNow()
         }
     }
 
-    override fun onBackPressed() {
-        val orientation: Int = resources.configuration.orientation
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-
-
-        if (supportFragmentManager.backStackEntryCount == 0 && orientation == Configuration.ORIENTATION_PORTRAIT)
-            transaction.replace(R.id.fragment, ListFragment()).commit()
-        else super.onBackPressed()
-    }
 }
 
